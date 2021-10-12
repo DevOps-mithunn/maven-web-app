@@ -13,18 +13,18 @@ node ('master')
   
    //properties([[$class: 'JiraProjectProperty'], buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '2', daysToKeepStr: '', numToKeepStr: '2')), pipelineTriggers([pollSCM('* * * * *')])])
   
-  stage("CheckOutCodeGit")
+  stage("git clone")
   {
    git branch: 'master', credentialsId: '65fb834f-a83b-4fe7-8e11-686245c47a65', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git'
  }
  
- stage("Build")
+ stage("maven Build")
  {
  sh "${mavenHome}/bin/mvn clean package"
  }
  
   /*
- stage("ExecuteSonarQubeReport")
+ stage("ExecuteSonaranalysis")
  {
  sh "${mavenHome}/bin/mvn sonar:sonar"
  }
