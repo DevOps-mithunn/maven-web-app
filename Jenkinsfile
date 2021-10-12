@@ -18,18 +18,18 @@ node ('master')
    git branch: 'master', credentialsId: '65fb834f-a83b-4fe7-8e11-686245c47a65', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git'
  }
  
- stage("Build")
+ stage("MavenBuild")
  {
  sh "${mavenHome}/bin/mvn clean package"
  }
  
   /*
- stage("ExecuteSonarreport")
+ stage("ExecuteSonarQubereport")
  {
  sh "${mavenHome}/bin/mvn sonar:sonar"
  }
  
- stage("UploadArtifact")
+ stage("UploadArtifact repository")
  {
  sh "${mavenHome}/bin/mvn deploy"
  }
@@ -41,7 +41,7 @@ node ('master')
   }
  }
  
- stage('EmailNotification')
+ stage('Email Notification')
  {
  mail bcc: 'devopstrainingblr@gmail.com', body: '''Build is over
 
